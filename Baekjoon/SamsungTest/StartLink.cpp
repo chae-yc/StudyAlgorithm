@@ -8,7 +8,7 @@ using namespace std;
 
 int N;
 int s[20][20];
-int pairs[55];
+int pairs[400];
 bool visited[20];
 
 vector<int> team1;

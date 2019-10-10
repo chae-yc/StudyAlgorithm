@@ -12,12 +12,12 @@ int N, M;
 int board[50][50];
 
 // North West South East
-//int dy[4] = {-1, 0, 1, 0};
-//int dx[4] = {0, -1, 0, 1};
+int dy[4] = {-1, 0, 1, 0};
+int dx[4] = {0, -1, 0, 1};
 
 // N E S W
-int dy[4] = {-1, 0, 1, 0};
-int dx[4] = {0, 1, 0, -1};
+// int dy[4] = {-1, 0, 1, 0};
+// int dx[4] = {0, 1, 0, -1};
 
 
 int solution(robot init){
@@ -34,8 +34,8 @@ int solution(robot init){
 
         new_dir = cur.dir;
         for(i=0; i != 4; ++i){
-//            new_dir = (new_dir+1)%4;
-            new_dir = (new_dir + 3) % 4;
+           new_dir = (new_dir+1)%4;
+            // new_dir = (new_dir + 3) % 4;
             new_y = cur.y + dy[new_dir];
             new_x = cur.x + dx[new_dir];
             if(board[new_y][new_x] == 0)
@@ -64,11 +64,11 @@ int main(void){
     cin >> N >> M;
     robot init;
     cin >> init.y >> init.x >> init.dir;
-//    if(init.dir == 1)
-//        init.dir = 3;
-//    if(init.dir == 3)
-//        init.dir = 1;
-//
+   if(init.dir == 1)
+       init.dir = 3;
+   else if(init.dir == 3)
+       init.dir = 1;
+
     for(int i=0; i != N; ++i){
         for(int j=0; j != M; ++j){
             cin >> board[i][j];
