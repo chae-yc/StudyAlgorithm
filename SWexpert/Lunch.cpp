@@ -140,7 +140,6 @@ void solution(){
 }
 
 int main(void){
-    freopen("/Users/pd3chae/Xcode/test/test2/test2/input.txt", "r", stdin);
     int testcase;
     scanf("%d", &testcase);
     
