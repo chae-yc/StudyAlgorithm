@@ -96,7 +96,7 @@ void bfs(ball& balls){
     while(!que.empty()){
         ball cur = que.front();
         que.pop();
-        if(cur.cnt > 9) // I spent 3 hours because of this.... wow....
+        if(cur.cnt > 9) // I spent 3 hours because I missed this.... wow....
             break;
         for(int i=0; i<4; i++){
             if(cur.prev != -1)

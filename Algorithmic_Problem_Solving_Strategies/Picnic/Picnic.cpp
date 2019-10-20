@@ -7,18 +7,23 @@ using namespace std;
 
 int countParing(bool[]);
 
+bool taken[10];
 bool areFriends[10][10];
 int N, M;
 int main(void){
     int C=0;
 
-    for(int i=0; i<10; i++)
-            for(int j=0; j<10; j++)
-                areFriends[i][j] = false;
-
     freopen("input.txt","r",stdin);
     cin >> C;
     while(C != 0){
+        N = 0;
+        M = 0;
+        for(int i=0; i<10; i++){
+            taken[i] = false;
+            for(int j=0; j<10; j++)
+                areFriends[i][j] = false;
+        }
+
         cin >> N >> M;
         for(int i=0; i != M; i++){
             int a, b;
@@ -26,14 +31,8 @@ int main(void){
             areFriends[a][b] = true;
             areFriends[b][a] = true;
         }
-        bool taken[10] = {false, };
-        printf("%d\n", countParing(taken));
 
-        N = 0;
-        M = 0;
-        for(int i=0; i<10; i++)
-            for(int j=0; j<10; j++)
-                areFriends[i][j] = false;
+        printf("%d\n", countParing(taken));
 
         C -= 1;
     }

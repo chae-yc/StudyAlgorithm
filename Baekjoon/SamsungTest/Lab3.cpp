@@ -22,11 +22,9 @@ int dx[] = {0, 1, 0, -1};
 vector<int> selected;
 
 int answer = INT_MAX;
-
+int cp[50][50];
 int bfs(){
     queue<pos> que;
-    int cp[50][50];
-    int time = 0;
     int nvirus = virus_num;
     
     for(int i=0; i<N; ++i){
@@ -41,7 +39,6 @@ int bfs(){
     while(!que.empty()){
         pos cur = que.front();
         que.pop();
-        time = max(time, cur.time);
         
         for(int i=0; i<4; ++i){
             int new_y = cur.point/N + dy[i];

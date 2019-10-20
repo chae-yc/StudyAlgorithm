@@ -38,11 +38,10 @@ int solution(){
             }
         }
         
-        
+        // diffusion
         while(!dust.empty()){
             cur = dust.front();
             dust.pop();
-            // diffusion
             int new_r=0, new_c=0, new_amt=0;
             for(int i=0; i!=4; ++i){
                 new_r = cur.r + dr[i];

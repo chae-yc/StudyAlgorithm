@@ -1,7 +1,6 @@
 // 00:23
 #include <iostream>
 #include <vector>
-#include <climits>
 using namespace std;
 
 int map[14][21];
@@ -13,10 +12,13 @@ vector<int> selectB;
 int D, W, K;
 int answer;
 
+
 int check(){
     int a_size = (int)selectA.size();
     int line_size = (int)select_line.size();
     
+    // 약품 칠할 전체 줄 종류에서 A약품 사용할 라인까지 나눠줬으므로
+    // B 약품 칠할 라인을 구할 수 있음
     selectB.clear();
     for(int i=0, i2=0; i<line_size; ++i){
         if(i2 < a_size && selectA[i2] == select_line[i]){
@@ -27,6 +29,7 @@ int check(){
     }
     int b_size = (int)selectB.size();
     
+    // 각 라인에 맞게 약품 칠하기
     int a=0, b=0;
     for(int i=0; i<D; ++i){
         if(a < a_size && selectA[a] == i){
@@ -43,6 +46,7 @@ int check(){
         }
     }
     
+    // 검사하기
     for(int i = 0; i < W; i++){
         int cnt = 1;
         for(int j = 0; j < D-1; j++){
@@ -58,13 +62,15 @@ int check(){
             
         }
         if(cnt < K){
-            return INT_MAX;
+            return INT_MAX;     // 조건 미달 이면 다름 열 검사 없이 return
         }
     }
-    return line_size;
+    return line_size;       // 조건 만족하면 약품 칠한 라인 수 return
 }
+
+// A약품 사용할 라인 종류 나누기.
 void dfs2(int cur, int depth){
-    if(answer != INT_MAX)
+    if(answer != 15)
         return;
     if(selectA.size() == depth){
         int ret = check();
@@ -78,9 +84,12 @@ void dfs2(int cur, int depth){
         selectA.pop_back();
     }
 }
+
+// 약품 칠 라인 종류 정하기. 0개에서 최대 K개 까지
 void dfs(int cur, int depth){
-    if(answer != INT_MAX)
+    if(answer != 15)
         return;
+    // depth가 0~K 까지 라서 그 수 만큼의 line이 선택됐으면 dfs2실행
     if(select_line.size() == depth){
         selectA.clear();
         for(int i=0; i<=depth; ++i)
@@ -103,7 +112,7 @@ int solution(){
         }
     }
     
-    answer = INT_MAX;
+    answer = 15;
     for(int i=0; i<=K; ++i){
         select_line.clear();
         dfs(0, i);
